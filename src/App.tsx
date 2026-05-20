@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RouterProvider, createBrowserRouter, ScrollRestoration, Outlet } from "react-router-dom";
 import Index from "./pages/Index";
 import Article from "./pages/Article";
+import ABTesting from "./pages/ABTesting";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/article/:slug",
         element: <Article />,
+      },
+      {
+        path: "/ab-testing",
+        element: <ABTesting />,
       },
       {
         path: "*",
