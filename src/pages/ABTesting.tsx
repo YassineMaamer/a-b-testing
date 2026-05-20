@@ -1,4 +1,10 @@
 import { ArrowRight, Clock, MousePointerClick, Mic, TrendingUp, Sparkles, CheckCircle2 } from "lucide-react";
+import reteauImg from "../images/reteau.png";
+import platImg from "../images/plat.jpg";
+import planImg from "../images/plan.png";
+import matchImg from "../images/match.jpg";
+import sansmicroImg from "../images/sansmicro.png";
+import microImg from "../images/micro.png";
 
 /**
  * Spoty — A/B Testing Case Study
@@ -106,8 +112,8 @@ type TestProps = {
   axis: string;
   icon: React.ReactNode;
   goal: string;
-  versionA: { label: string; desc: string };
-  versionB: { label: string; desc: string };
+  versionA: { label: string; desc: string; img?: string };
+  versionB: { label: string; desc: string; img?: string };
   metric: string;
   suffix: string;
   a: number;
@@ -183,6 +189,11 @@ const TestSection = ({
                     </span>
                   )}
                 </div>
+                {d.img && (
+                  <div className="w-full rounded-xl overflow-hidden mt-2 mb-4 shadow-sm border" style={{ borderColor: "var(--border)" }}>
+                    <img src={d.img} alt={d.label} className="w-full h-auto block" />
+                  </div>
+                )}
                 <h3 className="text-2xl font-semibold tracking-tight">{d.label}</h3>
                 <p className="text-base opacity-80 leading-relaxed">{d.desc}</p>
               </div>
@@ -317,8 +328,8 @@ const ABTesting = () => {
         title="Quick Mode visuals: place or plate?"
         icon={<Clock className="w-7 h-7" />}
         goal="Identify which type of imagery helps users decide faster in Spoty's swipe-based Quick Mode."
-        versionA={{ label: "Restaurant exterior", desc: "Architectural photo of the venue — neutral, informative, but emotionally distant." }}
-        versionB={{ label: "Dish close-up", desc: "Hero shot of the signature plate — appetite-driven, instantly evocative." }}
+        versionA={{ label: "Restaurant exterior", desc: "Architectural photo of the venue — neutral, informative, but emotionally distant.", img: reteauImg }}
+        versionB={{ label: "Dish close-up", desc: "Hero shot of the signature plate — appetite-driven, instantly evocative.", img: platImg }}
         metric="Average decision time per card"
         suffix="s"
         a={18}
@@ -334,8 +345,8 @@ const ABTesting = () => {
         title="A visible match score builds trust."
         icon={<MousePointerClick className="w-7 h-7" />}
         goal="Measure whether displaying an AI compatibility score increases interaction with the first recommendation."
-        versionA={{ label: "Plain suggestion", desc: "Restaurant card without any personalization signal." }}
-        versionB={{ label: "96% Match for you", desc: "Same card with a visible compatibility score driven by taste profile." }}
+        versionA={{ label: "Plain suggestion", desc: "Restaurant card without any personalization signal.", img: planImg }}
+        versionB={{ label: "96% Match for you", desc: "Same card with a visible compatibility score driven by taste profile.", img: matchImg }}
         metric="Click-through rate on first suggestion"
         suffix="%"
         a={42}
@@ -351,8 +362,8 @@ const ABTesting = () => {
         title="Voice AI removes reservation friction."
         icon={<Mic className="w-7 h-7" />}
         goal="Compare the classic form with a conversational voice flow on full reservation completion."
-        versionA={{ label: "Classic form", desc: "Multi-step form with date, time, party size and contact details." }}
-        versionB={{ label: "Voice AI assistant", desc: "Hands-free conversational reservation handled in a single turn." }}
+        versionA={{ label: "Classic form", desc: "Multi-step form with date, time, party size and contact details.", img: sansmicroImg }}
+        versionB={{ label: "Voice AI assistant", desc: "Hands-free conversational reservation handled in a single turn.", img: microImg }}
         metric="Reservation completion rate"
         suffix="%"
         a={51}
